@@ -1,0 +1,3 @@
+RELEASE MPACK: 
+     $ mono /Applications/Visual\ Studio.app/Contents/Resources/lib/monodevelop/bin/vstool.exe setup pack <NAME>.dll
+https://blog.lextudio.com/how-to-write-add-ins-of-visual-studio-for-mac-ee6113db5ddf

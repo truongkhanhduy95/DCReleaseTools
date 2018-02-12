@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ExtensionModel>
+<Addin 
+  name="DCReleaseTools Addins"
+  id="DCReleaseTools"
+  version="1.0.0"
+  namespace="DCReleaseTools"
+  author="Di cute"
+  copyright="Di cute"
+  description="Di's Addins"
+  category="IDE extensions"
+  flags="None">
+    <Runtime>
+        <Import assembly="DCReleaseTools.dll" />
+    </Runtime>
 	<Extension
         path="/MonoDevelop/Ide/DisplayBindings">
         <DisplayBinding
@@ -14,6 +26,28 @@
             id="InterfaceBuilderBeforeIOSDesinger"
             insertbefore="iOSDesigner" />
     </Extension>
-    <!-- XCode designer tools -->
     
-</ExtensionModel>
+    <!-- XCode designer tools -->
+
+    <Extension path="/MonoDevelop/Ide/Commands/Edit">
+        <Command id="DCReleaseTools.Commands.HockeyCommands.Build" 
+                _label="Build app to Hockey" 
+                _description="" 
+                defaultHandler="DCReleaseTools.Handlers.Hockey.HockeyBuildHandler" />
+        <Command id="DCReleaseTools.Commands.HockeyCommands.Authorization" 
+                _label="Hockey Auth" 
+                _description="" 
+                defaultHandler="DCReleaseTools.Handlers.Hockey.HockeyAuthHandler" />
+    </Extension>
+    <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+        <Condition id="ItemType" value="Project">
+            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Build" insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Clean" insertbefore="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
+        </Condition>
+        <Condition id="ItemType" value="Project|Solution">
+            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Authorization" insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Clean" insertbefore="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
+        </Condition>
+    </Extension>
+
+    <!-- HOCKEYAPP Commands -->
+    
+</Addin>

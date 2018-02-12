@@ -46,21 +46,24 @@
     <Compile Include="gtk-gui\DCReleaseTools.HockeyAuthDialog.cs" />
     <Compile Include="Dialogs\HockeyAuthDialog.cs" />
     <Compile Include="Properties\AddinInfo.cs" />
+    <Compile Include="Handlers\Hockey\HockeyCommands.cs" />
+    <Compile Include="Handlers\Hockey\HockeyBuildHandler.cs" />
+    <Compile Include="Handlers\Hockey\HockeyAuthHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\DCReleaseTools.addin.xml" />
+    <EmbeddedResource Include="Properties\Manifest.addin.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
     <Folder Include="Handlers\" />
+    <Folder Include="Handlers\Hockey\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\DCReleaseTools.addin.xml" />
-    <None Include="Properties\Manifest.addin.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoDevelop.Addins.0.4.1\build\MonoDevelop.Addins.targets" Condition="Exists('..\packages\MonoDevelop.Addins.0.4.1\build\MonoDevelop.Addins.targets')" />
