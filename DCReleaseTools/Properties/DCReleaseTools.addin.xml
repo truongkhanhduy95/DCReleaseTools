@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Addin 
+  name="Redth's Addins"
+  id="RedthAddin"
+  version="1.0.9"
+  namespace="RedthAddin"
+  author="Jon Dick"
+  copyright="Jon Dick"
+  description="Redth's Addins.  Extensions for MonoDevelop/Xamarin Studio to improve productivity.  Nuke Bin/Obj folders quickly deletes your project's Intermediate Output path and Build output paths (especially useful for Android development)"
+  category="IDE extensions"
+  url="http://redth.codes"
+  flags="None">
+    <Runtime>
+        <Import assembly="RedthAddin.dll" />
+    </Runtime>
+    <ExtensionModel>
+        <Extension
+            path="/MonoDevelop/Ide/DisplayBindings">
+            <DisplayBinding
+                class="MonoDevelop.MacDev.XcodeInterfaceBuilderDisplayBinding"
+                id="InterfaceBuilderBeforeIPhoneDesinger"
+                insertbefore="IPhoneDesigner" />
+        </Extension>
+        <Extension
+            path="/MonoDevelop/Ide/DisplayBindings">
+            <DisplayBinding
+                class="MonoDevelop.MacDev.XcodeInterfaceBuilderDisplayBinding"
+                id="InterfaceBuilderBeforeIOSDesinger"
+                insertbefore="iOSDesigner" />
+        </Extension>
+        <!-- IOS Xcode designer -->
+        
+    </ExtensionModel>
+</Addin>
