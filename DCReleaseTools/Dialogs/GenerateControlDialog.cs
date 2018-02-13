@@ -10,12 +10,13 @@ namespace DCReleaseTools.Dialogs
             this.Build();
             this.Title = "Enter resource file name";
 
-
             AddEvents();
         }
 
         private void AddEvents()
         {
+            txtResourceName .GrabFocus();
+
             btnCancel.Clicked += BtnCancel_Clicked; 
             btnOK.Clicked += BtnOK_Clicked;
         }

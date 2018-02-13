@@ -2,6 +2,7 @@
 using DCReleaseTools.Dialogs;
 using MonoDevelop.Components.Commands;
 using MonoDevelop.Ide;
+using MonoDevelop.Ide.Gui;
 
 namespace DCReleaseTools.Handlers
 {
@@ -9,18 +10,18 @@ namespace DCReleaseTools.Handlers
     {
         public GenarateControlHandler()
         {
-           
         }
 
         protected override void Run()
         {
             var dialog = new GenerateControlDialog();
             MessageService.ShowCustomDialog(dialog);
+            //CodeRefactorer
         }
 
         protected override void Update(CommandInfo info)
         {
-            info.Enabled = true;
+            info.Enabled = IdeApp.Workbench.ActiveDocument.IsFile;
         }
     }
 }
