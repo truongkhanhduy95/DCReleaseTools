@@ -1,7 +1,7 @@
 ﻿using System;
 using MonoDevelop.Components.Commands;
 
-namespace DCReleaseTools.Handlers.Hockey
+namespace DCReleaseTools.Handlers
 {
     public class HockeyAuthHandler : CommandHandler
     {
