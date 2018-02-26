@@ -7,18 +7,26 @@ namespace DCReleaseTools
     {
         public string Type { get; private set; }
         public string Name { get; private set; }
+        public string PrivateName { get; private set; }
         public string Id { get; private set; }
 
         public AndroidControl(string type, string id)
         {
             Type = ParseType(type);
             Name = ParseName(id);
+            PrivateName = ParsePrivateName(id);
             Id = ParseId(id);
         }
 
         private string ParseType(string type)
         {
             return type.Split('.').Last();
+        }
+
+        private string ParsePrivateName(string id)
+        {
+            id = id.Replace("@+id/", string.Empty);
+            return "_" + id;
         }
 
         private string ParseName(string id)
