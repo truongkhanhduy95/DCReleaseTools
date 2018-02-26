@@ -44,14 +44,18 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AddinInfo.cs" />
-    <Compile Include="Handlers\Hockey\HockeyCommands.cs" />
-    <Compile Include="Handlers\Hockey\HockeyBuildHandler.cs" />
+    <Compile Include="Handlers\Hockey\HockeyBuildHandler.cs">
+      <DependentUpon>HockeyAuthHandler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\Hockey\HockeyAuthHandler.cs" />
     <Compile Include="Handlers\DroidBindingControl\BindingCommands.cs" />
     <Compile Include="Handlers\DroidBindingControl\GenerateControlHandler.cs" />
-    <Compile Include="Dialogs\GenerateControlDialog.cs" />
-    <Compile Include="gtk-gui\DCReleaseTools.Dialogs.GenerateControlDialog.cs" />
     <Compile Include="Utils\ProjectHelper.cs" />
+    <Compile Include="Dialogs\GenerateControlDialog.cs" />
+    <Compile Include="Dialogs\GenerateControlDialog.UI.cs">
+      <DependentUpon>GenerateControlDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\HockeyCommands.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

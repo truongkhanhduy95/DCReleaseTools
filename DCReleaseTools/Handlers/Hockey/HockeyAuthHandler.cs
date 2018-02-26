@@ -7,6 +7,7 @@ namespace DCReleaseTools.Handlers
     {
         public HockeyAuthHandler()
         {
+            
         }
 
         protected override void Run()

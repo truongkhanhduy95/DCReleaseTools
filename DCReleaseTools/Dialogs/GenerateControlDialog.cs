@@ -1,40 +1,82 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MonoDevelop.Ide;
+using MonoDevelop.Projects;
+using Xwt;
+
 namespace DCReleaseTools.Dialogs
 {
-    public partial class GenerateControlDialog : Gtk.Dialog
+    public partial class GenerateControlDialog
     {
-        private string _resourceFile;
+        public string SelectedFile { get; private set; }
+        IDictionary<string, string> files;
 
-        public GenerateControlDialog()
+        public GenerateControlDialog(IEnumerable<ProjectFile> items, IEnumerable<ProjectFile> siblings)
         {
-            this.Build();
-            this.Title = "Enter resource file name";
+            Build();
+            okButton.Clicked += OkButton_Clicked;
 
-            AddEvents();
-        }
+            ProjectFile currentItem = items.First();
 
-        private void AddEvents()
-        {
-            txtResourceName .GrabFocus();
-
-            btnCancel.Clicked += BtnCancel_Clicked; 
-            btnOK.Clicked += BtnOK_Clicked;
-        }
-
-        void BtnOK_Clicked(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtResourceName.Text))
+            files = GetSource(siblings, items, new Dictionary<string, string>(), string.Empty);
+            foreach (string key in files.Keys)
             {
-                _resourceFile = txtResourceName.Text;
-                Console.WriteLine(_resourceFile);
+                filesComboBox.Items.Add(key);
             }
 
-            this.Destroy();
+            int index = GetMatchParentIndex(currentItem.Name, files.Keys.ToArray());
+            filesComboBox.SelectedIndex = index;
         }
 
-        void BtnCancel_Clicked(object sender, EventArgs e)
+        internal bool ShowWithParent()
         {
-            this.Destroy();
+            WindowFrame parent = Toolkit.CurrentEngine.WrapWindow(IdeApp.Workbench.RootWindow);
+            return Run(parent) == Xwt.Command.Ok;
+        }
+
+        private int GetMatchParentIndex(string currentFileName, string[] allFiles)
+        {
+            int maxFileIndex = 0;
+            int maxFileEqualCharCount = 0;
+
+            for (int i = 0; i < allFiles.Length; i++)
+            {
+                var fileNameInList = allFiles[i];
+                var count = GetEqualCharCount(currentFileName, fileNameInList);
+                if (count <= maxFileEqualCharCount) continue;
+                maxFileEqualCharCount = count;
+                maxFileIndex = i;
+            }
+            return maxFileIndex;
+        }
+
+        int GetEqualCharCount(string currentFileName, string fileNameInList)
+        {
+            return fileNameInList.TakeWhile((t, i) => i < currentFileName.Length).TakeWhile((t, i) => currentFileName[i] == t).Count();
+        }
+
+        IDictionary<string, string> GetSource(IEnumerable<ProjectFile> parents, IEnumerable<ProjectFile> selected, Dictionary<string, string> paths, string indentation)
+        {
+            foreach (ProjectFile item in parents)
+            {
+                if (!selected.Contains(item))
+                {
+                    string path = indentation + item.FilePath.FileName;
+
+                    if (!paths.ContainsKey(path))
+                        paths.Add(path, item.FilePath);
+                }
+
+                GetSource(item.DependentChildren, selected, paths, indentation + "    ");
+            }
+
+            return paths;
+        }
+
+        void OkButton_Clicked(object sender, EventArgs e)
+        {
+            SelectedFile = files[filesComboBox.SelectedItem.ToString()];
         }
     }
 }

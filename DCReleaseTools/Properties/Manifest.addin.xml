@@ -42,11 +42,16 @@
     </Extension>
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
         <Condition id="ItemType" value="Project">
-            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Build" insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Clean" insertbefore="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
+            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Build" 
+            insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
         </Condition>
         <Condition id="ItemType" value="Project|Solution">
-            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Authorization" insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Clean" insertbefore="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
+            <CommandItem id="DCReleaseTools.Commands.HockeyCommands.Authorization" 
+            insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Unload" />
         </Condition>
+        <SeparatorItem
+            insertafter="MonoDevelop.Ide.Commands.ProjectCommands.Unload"
+        />
     </Extension>
 
     <!-- HOCKEYAPP Commands -->
@@ -58,8 +63,13 @@
                 defaultHandler="DCReleaseTools.Handlers.GenarateControlHandler" />
     </Extension>
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
-        <Condition id="ItemType" value="Project">
-            <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"/>
+        <Condition id="ItemType" value="ProjectFile">
+            <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"
+                insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
+                insertbefore="ToolsSectionEnd"/>
         </Condition>
+        <SeparatorItem
+                insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
+        />
     </Extension>
 </Addin>
