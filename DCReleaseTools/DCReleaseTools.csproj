@@ -56,6 +56,10 @@
       <DependentUpon>GenerateControlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\HockeyCommands.cs" />
+    <Compile Include="Utils\Nester.cs" />
+    <Compile Include="Utils\ResourceReader.cs" />
+    <Compile Include="Models\AndroidControl.cs" />
+    <Compile Include="Utils\ManualCodeChanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -69,6 +73,7 @@
     <Folder Include="Handlers\Hockey\" />
     <Folder Include="Handlers\DroidBindingControl\" />
     <Folder Include="Utils\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

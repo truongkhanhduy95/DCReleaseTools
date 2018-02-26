@@ -28,6 +28,8 @@ namespace DCReleaseTools.Dialogs
 
             okButton = new DialogButton(GettextCatalog.GetString("OK"), Command.Ok);
             Buttons.Add(okButton);
+
+            okButton.Clicked += OkButton_Clicked;
         }
     }
 }
