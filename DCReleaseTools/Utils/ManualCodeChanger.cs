@@ -19,9 +19,7 @@ namespace DCReleaseTools.Utils
             Namespace = GetClassNameSpace(parentFile.FilePath);
             ControlList = controlList;
 
-            //TODO: Add child file
             CreateUIFile();
-
 
             //TODO: Nest child to parent
             foreach (var x in controlList)
@@ -32,17 +30,17 @@ namespace DCReleaseTools.Utils
 
         private static string GetClassNameSpace(string filePath)
         {
-            return "test namespace";
+            return "test.namespace";
         }
 
         private static void CreateUIFile()
         {
-            var fileName = ParentFile.Name.Split('.')[0] + ".ui.cs";
+            var fileName = ParentFile.Name.Remove(ParentFile.Name.LastIndexOf('.')) + ".ui.cs";
             var filePath = Path.Combine(ParentFile.FilePath.ParentDirectory.FullPath.ToString(), fileName);
             if (!File.Exists(filePath))
             {
                 //Create file
-                File.Create(filePath);
+                File.Create(filePath).Dispose();
                 AppendTemplateContent(filePath);
 
                 //Add file to project
@@ -52,13 +50,13 @@ namespace DCReleaseTools.Utils
 
         private static void AppendTemplateContent(string filePath)
         {
-            using (TextWriter writer = new StreamWriter(filePath))
+            using (TextWriter writer = new StreamWriter(filePath, true))
             {
                 writer.WriteLine("using System.Collections.Generic;\nusing Android.Widget;"); //using
                 writer.WriteLine();
                 writer.WriteLine("namespace " + Namespace);
                 writer.WriteLine("{");
-                writer.WriteLine("\tpublic partial class "+ ParentFile.Name);
+                writer.WriteLine("\tpublic partial class "+ ParentFile.ItemName);
                 writer.WriteLine("\t{");
                 WriteControls(writer);
                 writer.WriteLine("\t}");
