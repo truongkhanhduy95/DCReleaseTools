@@ -6,7 +6,7 @@ using MonoDevelop.Projects;
 
 namespace DCReleaseTools.Utils
 {
-    public class ManualCodeChanger
+    public class ManualCodeChanger //TODO: Change manual create to template create
     {
         private static string Namespace;
         private static string ParentName;
@@ -20,7 +20,7 @@ namespace DCReleaseTools.Utils
             ParentFile = parentFile;
             ControlList = controlList;
             ParentName = Path.GetFileName(ParentFile.Name.Remove(ParentFile.Name.LastIndexOf('.')));
-            Namespace = GetClassNameSpace(parentFile.FilePath);
+            ModifyOriginFile(parentFile.FilePath);
 
             //Create UI file
             var newFile = CreateUIFile();
@@ -29,10 +29,37 @@ namespace DCReleaseTools.Utils
             Nester.Nest(newFile, parentFile);
         }
 
-        private static string GetClassNameSpace(string filePath)
+        private static void ModifyOriginFile(string filePath)
         {
-            //TODO: Get name space from .cs file
-            return "Some.Text.Here";
+            var lines = File.ReadAllLines(filePath);
+            int index = -1;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+                if (line.StartsWith("namespace", StringComparison.Ordinal))
+                {
+                    Namespace = line.Split(' ')[1]; // TODO: Find anther way to get namespace
+                }
+
+                if (line.Contains($"public class {ParentName}"))
+                {
+                    index = i;
+                    break;
+                }   
+            }
+
+            //TODO: Change parent class to partial
+            if (index != -1)
+            {
+                lines[index] = lines[index].Replace($"public class {ParentName}", $"public partial class {ParentName}");
+                File.WriteAllLines(filePath, lines);   
+            }
+
+            MonoDevelop.Ide.Gui.Document doc = IdeApp.Workbench.ActiveDocument;
+            var x = doc.FileName;
+            var y = doc.Views;
+            var z = doc.ActiveView;
+            IdeApp.ProjectOperations.SaveAsync(ParentFile.Project.ParentSolution);
         }
 
         private static ProjectFile CreateUIFile()
