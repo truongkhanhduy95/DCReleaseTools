@@ -12,24 +12,7 @@
     <Runtime>
         <Import assembly="DCReleaseTools.dll" />
     </Runtime>
-    
-	<Extension
-        path="/MonoDevelop/Ide/DisplayBindings">
-        <DisplayBinding
-            class="MonoDevelop.MacDev.XcodeInterfaceBuilderDisplayBinding"
-            id="InterfaceBuilderBeforeIPhoneDesinger"
-            insertbefore="IPhoneDesigner" />
-    </Extension>
-    <Extension
-        path="/MonoDevelop/Ide/DisplayBindings">
-        <DisplayBinding
-            class="MonoDevelop.MacDev.XcodeInterfaceBuilderDisplayBinding"
-            id="InterfaceBuilderBeforeIOSDesinger"
-            insertbefore="iOSDesigner" />
-    </Extension>
-    
-    <!-- XCode designer tools -->
-
+   
     <Extension path="/MonoDevelop/Ide/Commands/Edit">
         <Command id="DCReleaseTools.Commands.HockeyCommands.Build" 
                 _label="Build app to Hockey" 

@@ -38,7 +38,7 @@ namespace DCReleaseTools
         private string ParseId(string id)
         {
             id = id.Replace("@+id/", string.Empty);
-            return string.Format("Resource.Layout." + id);
+            return string.Format("Resource.Id." + id);
         }
 
 

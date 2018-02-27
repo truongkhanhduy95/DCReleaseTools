@@ -9,33 +9,36 @@ namespace DCReleaseTools.Utils
     public class ManualCodeChanger
     {
         private static string Namespace;
+        private static string ParentName;
+
         private static ProjectFile ParentFile;
         private static List<AndroidControl> ControlList;
 
         public static void CreateControlWrapperClass(ProjectFile parentFile, List<AndroidControl> controlList)
         {
-            //TODO: Change parent File
+            //Change parent File
             ParentFile = parentFile;
-            Namespace = GetClassNameSpace(parentFile.FilePath);
             ControlList = controlList;
+            ParentName = Path.GetFileName(ParentFile.Name.Remove(ParentFile.Name.LastIndexOf('.')));
+            Namespace = GetClassNameSpace(parentFile.FilePath);
 
-            CreateUIFile();
+            //Create UI file
+            var newFile = CreateUIFile();
 
-            //TODO: Nest child to parent
-            foreach (var x in controlList)
-            {
-                System.Diagnostics.Debug.WriteLine(x);
-            }
+            //Nest child to parent
+            Nester.Nest(newFile, parentFile);
         }
 
         private static string GetClassNameSpace(string filePath)
         {
-            return "test.namespace";
+            //TODO: Get name space from .cs file
+            return "Some.Text.Here";
         }
 
-        private static void CreateUIFile()
+        private static ProjectFile CreateUIFile()
         {
-            var fileName = ParentFile.Name.Remove(ParentFile.Name.LastIndexOf('.')) + ".ui.cs";
+            ProjectFile newFile = null;
+            var fileName =  ParentName + ".ui.cs";
             var filePath = Path.Combine(ParentFile.FilePath.ParentDirectory.FullPath.ToString(), fileName);
             if (!File.Exists(filePath))
             {
@@ -44,8 +47,9 @@ namespace DCReleaseTools.Utils
                 AppendTemplateContent(filePath);
 
                 //Add file to project
-                IdeApp.ProjectOperations.CurrentSelectedProject.AddFile(fileName);
+                newFile = IdeApp.ProjectOperations.CurrentSelectedProject.AddFile(filePath);
             }
+            return newFile;
         }
 
         private static void AppendTemplateContent(string filePath)
@@ -56,7 +60,7 @@ namespace DCReleaseTools.Utils
                 writer.WriteLine();
                 writer.WriteLine("namespace " + Namespace);
                 writer.WriteLine("{");
-                writer.WriteLine("\tpublic partial class "+ ParentFile.ItemName);
+                writer.WriteLine("\tpublic partial class "+ ParentName);
                 writer.WriteLine("\t{");
                 WriteControls(writer);
                 writer.WriteLine("\t}");
@@ -66,17 +70,21 @@ namespace DCReleaseTools.Utils
 
         private static void WriteControls(TextWriter writer)
         {
-            foreach (var control in ControlList)
+            if (ControlList?.Count != 0)
             {
-                writer.WriteLine($"\t\tprivate {control.Type} {control.PrivateName};");
-                writer.WriteLine($"\t\tpublic {control.Type} {control.Name}");
-                writer.WriteLine("\t\t{");
-                writer.WriteLine("\t\t\tget");
-                writer.WriteLine("\t\t\t{");
-                writer.WriteLine($"\t\t\t\treturn {control.PrivateName} ??");
-                writer.WriteLine($"\t\t\t\t\t({control.PrivateName} = RootView.FindViewById<{control.Type}>({control.Id}));");
-                writer.WriteLine("\t\t\t}");
-                writer.WriteLine("\t\t}");
+                foreach (var control in ControlList)
+                {
+                    writer.WriteLine($"\t\tprivate {control.Type} {control.PrivateName};");
+                    writer.WriteLine($"\t\tpublic {control.Type} {control.Name}");
+                    writer.WriteLine("\t\t{");
+                    writer.WriteLine("\t\t\tget");
+                    writer.WriteLine("\t\t\t{");
+                    writer.WriteLine($"\t\t\t\treturn {control.PrivateName} ??");
+                    writer.WriteLine($"\t\t\t\t\t({control.PrivateName} = RootView.FindViewById<{control.Type}>({control.Id}));");
+                    writer.WriteLine("\t\t\t}");
+                    writer.WriteLine("\t\t}");
+                    writer.WriteLine();
+                }
             }
         }
     }

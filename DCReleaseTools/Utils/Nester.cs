@@ -9,30 +9,13 @@ namespace DCReleaseTools.Utils
 {
     public class Nester
     {
-        public static void Nest(IEnumerable<ProjectFile> items, IEnumerable<ProjectFile> siblings)
+        public static void Nest(ProjectFile item, ProjectFile parentFile)
         {
-            GenerateControlDialog selector = null;
-
-            foreach (ProjectFile item in items)
+            if (!string.IsNullOrEmpty(parentFile.FilePath) && item != null)
             {
-                //string path = item.FilePath;
-                //ProjectFile parent = item.Project.GetProjectFile(selector.SelectedFile);
-                //if (parent == null) continue;
-
-                //item.DependsOn = parent.FilePath;
-                //    bool mayNeedAttributeSet = item.ContainingProject.Kind.Equals(CordovaKind, System.StringComparison.OrdinalIgnoreCase);
-                //    if (mayNeedAttributeSet)
-                //    {
-                //        SetDependentUpon(item, parent.Name);
-                //    }
-                //    else
-                //    {
-                //        item.Remove();
-                //        parent.ProjectItems.AddFromFile(path);
-                //    }
+                item.DependsOn = parentFile.FilePath;
+                IdeApp.ProjectOperations.SaveAsync(item.Project.ParentSolution);                
             }
-
-            IdeApp.ProjectOperations.SaveAsync(items.First().Project);
         }
 
         public static void UnNest(ProjectFile item)
