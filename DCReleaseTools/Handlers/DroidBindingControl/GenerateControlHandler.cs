@@ -16,24 +16,39 @@ namespace DCReleaseTools.Handlers
 
         protected override void Run()
         {
-            var parentFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
-            GenerateControlDialog selector = null;
-            using (selector = new GenerateControlDialog())
+            var progressMonitor = IdeApp.Workbench.ProgressMonitors.GetStatusProgressMonitor("Generating designer file...", Stock.StatusSolutionOperation, false, true, false);
+
+            try
             {
-                if (!selector.ShowWithParent())
+                var parentFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
+                GenerateControlDialog selector = null;
+                using (selector = new GenerateControlDialog())
                 {
-                    return;
+                    if (!selector.ShowWithParent())
+                        return;
                 }
+
+                var reader = new ResourceReader();
+                reader.LoadFromResource(selector.SelectedFile);
+
+                ManualCodeChanger.CreateControlWrapperClass(parentFile, reader.Controls);
+            }
+            catch
+            {
+                progressMonitor.ReportError("Cannot generate file!");
+                progressMonitor.Dispose();
+            }
+            finally
+            {
+                progressMonitor.ReportSuccess("Designer file added!");
+                progressMonitor.Dispose();
             }
 
-            var reader = new ResourceReader();
-            reader.LoadFromResource(selector.SelectedFile);
-
-            ManualCodeChanger.CreateControlWrapperClass(parentFile, reader.Controls);
         }
 
         protected override void Update(CommandInfo info)
         {
+            //TODO: check .cs file or in Droid project
             info.Enabled = true;
         }
     }
