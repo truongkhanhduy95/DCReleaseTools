@@ -48,17 +48,16 @@ namespace DCReleaseTools.Utils
                 }   
             }
 
-            //TODO: Change parent class to partial
+            //Change parent class to partial
             if (index != -1)
             {
                 lines[index] = lines[index].Replace($"public class {ParentName}", $"public partial class {ParentName}");
                 File.WriteAllLines(filePath, lines);   
             }
 
+            //Reload project
             MonoDevelop.Ide.Gui.Document doc = IdeApp.Workbench.ActiveDocument;
-            var x = doc.FileName;
-            var y = doc.Views;
-            var z = doc.ActiveView;
+            doc.Reload();
             IdeApp.ProjectOperations.SaveAsync(ParentFile.Project.ParentSolution);
         }
 
