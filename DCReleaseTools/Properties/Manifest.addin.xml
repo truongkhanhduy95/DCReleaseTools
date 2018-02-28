@@ -6,7 +6,7 @@
   namespace="DCReleaseTools"
   author="Di cute"
   copyright="Di cute"
-  description="Di's Addins"
+  description="Visual Studio extension for Xamarin Developers"
   category="IDE extensions"
   flags="None">
     <Runtime>

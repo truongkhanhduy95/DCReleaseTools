@@ -1,0 +1,12 @@
+<AddinProject appVersion="5.4">
+	<Project platforms="Mac Linux">
+		<AddinFile>DCReleaseTools/bin/Debug/DCReleaseTools.dll</AddinFile>
+		<BuildFile>DCReleaseTools.sln</BuildFile>
+		<BuildConfiguration>Debug</BuildConfiguration>
+	</Project>
+	<Project platforms="Win32">
+		<AddinFile>DCReleaseTools/bin/DebugWin32/DCReleaseTools.dll</AddinFile>
+		<BuildFile>DCReleaseTools.sln</BuildFile>
+		<BuildConfiguration>DebugWin32</BuildConfiguration>
+	</Project>
+</AddinProject>
