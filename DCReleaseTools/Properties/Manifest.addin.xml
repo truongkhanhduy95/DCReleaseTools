@@ -39,13 +39,22 @@
 
     <!-- HOCKEYAPP Commands -->
     
-     <Extension path="/MonoDevelop/Ide/Commands/Edit">
+    <Extension path="/MonoDevelop/Ide/Commands/Edit">
         <Command id="DCReleaseTools.Commands.BindingCommands.GenarateControl" 
                 _label="Generate control wrapper" 
                 _description="" 
                 defaultHandler="DCReleaseTools.Handlers.GenarateControlHandler" />
+        <Command id="DCReleaseTools.Commands.BindingCommands.OpenAndroidStudioDesign" 
+                _label="Open layout in Android Studio" 
+                _description="" 
+                defaultHandler="DCReleaseTools.Handlers.AndroidStudioDesignHandler" />
     </Extension>
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+        <Condition id="ItemType" value="ProjectFile">
+            <CommandItem id="DCReleaseTools.Commands.BindingCommands.OpenAndroidStudioDesign"
+                insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
+                insertbefore="ToolsSectionEnd"/>
+        </Condition>
         <Condition id="ItemType" value="ProjectFile">
             <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"
                 insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"

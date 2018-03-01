@@ -49,7 +49,6 @@
     </Compile>
     <Compile Include="Handlers\Hockey\HockeyAuthHandler.cs" />
     <Compile Include="Handlers\DroidBindingControl\BindingCommands.cs" />
-    <Compile Include="Handlers\DroidBindingControl\GenerateControlHandler.cs" />
     <Compile Include="Utils\ProjectHelper.cs" />
     <Compile Include="Dialogs\GenerateControlDialog.cs" />
     <Compile Include="Dialogs\GenerateControlDialog.UI.cs">
@@ -60,6 +59,8 @@
     <Compile Include="Utils\ResourceReader.cs" />
     <Compile Include="Models\AndroidControl.cs" />
     <Compile Include="Utils\ManualCodeChanger.cs" />
+    <Compile Include="Handlers\DroidBindingControl\GenerateControlWrapper\GenerateControlHandler.cs" />
+    <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\AndroidStudioDesignHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -74,6 +75,8 @@
     <Folder Include="Handlers\DroidBindingControl\" />
     <Folder Include="Utils\" />
     <Folder Include="Models\" />
+    <Folder Include="Handlers\DroidBindingControl\GenerateControlWrapper\" />
+    <Folder Include="Handlers\DroidBindingControl\AndroidStudioDesign\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
