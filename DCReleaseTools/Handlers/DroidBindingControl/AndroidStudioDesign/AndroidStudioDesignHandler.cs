@@ -15,9 +15,8 @@ namespace DCReleaseTools.Handlers
         protected override void Update(CommandInfo info)
         {
             var selectedFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
-            info.Enabled = FileHelper.IsXML(selectedFile)
+            ///info.Enabled = FileHelper.IsXML(selectedFile);
 
-            //info.Enabled = isLayoutFile;
             info.Enabled = false; //temp lock
         }
     }

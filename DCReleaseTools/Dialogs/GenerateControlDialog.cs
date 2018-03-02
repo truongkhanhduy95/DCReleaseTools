@@ -14,6 +14,8 @@ namespace DCReleaseTools.Dialogs
 
         IDictionary<string, string> files;
 
+        //TODO: Suggest Dialog
+
         public GenerateControlDialog(){
             Build();
             files = GetLayoutResource(); 
