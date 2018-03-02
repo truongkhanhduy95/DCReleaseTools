@@ -62,6 +62,7 @@
     <Compile Include="Handlers\DroidBindingControl\GenerateControlWrapper\GenerateControlHandler.cs" />
     <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\AndroidStudioDesignHandler.cs" />
     <Compile Include="Utils\FileHelper.cs" />
+    <Compile Include="Utils\AndroidHelper\AndroidIDEDetector.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -78,6 +79,7 @@
     <Folder Include="Models\" />
     <Folder Include="Handlers\DroidBindingControl\GenerateControlWrapper\" />
     <Folder Include="Handlers\DroidBindingControl\AndroidStudioDesign\" />
+    <Folder Include="Utils\AndroidHelper\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
