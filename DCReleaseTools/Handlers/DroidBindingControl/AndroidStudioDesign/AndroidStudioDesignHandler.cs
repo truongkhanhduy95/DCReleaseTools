@@ -16,7 +16,8 @@ namespace DCReleaseTools.Handlers
             var selectedFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
             var isLayoutFile = selectedFile.Name.EndsWith(".xml", StringComparison.Ordinal);
 
-            info.Enabled = isLayoutFile;
+            //info.Enabled = isLayoutFile;
+            info.Enabled = false; //temp lock
         }
     }
 }
