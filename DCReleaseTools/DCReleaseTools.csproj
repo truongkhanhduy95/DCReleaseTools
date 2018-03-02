@@ -61,6 +61,7 @@
     <Compile Include="Utils\ManualCodeChanger.cs" />
     <Compile Include="Handlers\DroidBindingControl\GenerateControlWrapper\GenerateControlHandler.cs" />
     <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\AndroidStudioDesignHandler.cs" />
+    <Compile Include="Utils\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

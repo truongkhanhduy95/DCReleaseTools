@@ -49,7 +49,8 @@ namespace DCReleaseTools.Handlers
         protected override void Update(CommandInfo info)
         {
             //TODO: check .cs file or in Droid project
-            info.Enabled = true;
+            var selectedFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
+            info.Enabled = FileHelper.IsCSharpFile(selectedFile);
         }
     }
 }

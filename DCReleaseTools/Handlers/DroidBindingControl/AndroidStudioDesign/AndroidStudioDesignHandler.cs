@@ -1,4 +1,5 @@
 ﻿using System;
+using DCReleaseTools.Utils;
 using MonoDevelop.Components.Commands;
 using MonoDevelop.Ide;
 using MonoDevelop.Projects;
@@ -14,7 +15,7 @@ namespace DCReleaseTools.Handlers
         protected override void Update(CommandInfo info)
         {
             var selectedFile = IdeApp.ProjectOperations.CurrentSelectedItem as ProjectFile;
-            var isLayoutFile = selectedFile.Name.EndsWith(".xml", StringComparison.Ordinal);
+            info.Enabled = FileHelper.IsXML(selectedFile)
 
             //info.Enabled = isLayoutFile;
             info.Enabled = false; //temp lock
