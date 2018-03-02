@@ -7,9 +7,9 @@ namespace DCReleaseTools.Utils
 {
     public static class FileHelper
     {
-        public static bool IsXML(ProjectFile selectedFile)
+        public static bool IsResource(ProjectFile selectedFile)
         {
-            var isLayoutFile = selectedFile.Name.EndsWith(".xml", StringComparison.Ordinal);
+            var isLayoutFile = selectedFile.Name.EndsWith(".xml", StringComparison.Ordinal) || selectedFile.Name.EndsWith(".axml", StringComparison.Ordinal);
             return isLayoutFile;
         }
 

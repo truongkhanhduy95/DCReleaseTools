@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using DCReleaseTools.Utils;
 
 namespace DCReleaseTools.Handlers
@@ -38,7 +40,7 @@ namespace DCReleaseTools.Handlers
         }
 
 
-        public void Sync(string selectedFile = "")
+        public void Sync(string selectedFile = "") //TODO: Open selected file?
         {
             var resFolder = Path.Combine(_xamarinProjectPath, ResFolderName);
             var ideaProjectDir = _androidProjectTemplateManager.CreateProjectFromTemplate(
@@ -127,13 +129,13 @@ namespace DCReleaseTools.Handlers
                 if (shouldRenameAxml)
                 {
                     AppendLog("Renaming {0} from axml to xml and to lowercase", name);
-                    FileExtensions.RenameFileExtensionAndMakeLowercase(filePath, "xml");
+                    FileHelper.RenameFileExtensionAndMakeLowercase(filePath, "xml");
                     return true;
                 }
                 else
                 {
                     AppendLog("Renaming {0} to lowercase", name);
-                    FileExtensions.RenameFileOrFolderToLowercase(filePath);
+                    FileHelper.RenameFileOrFolderToLowercase(filePath);
                     return true;
                 }
             }

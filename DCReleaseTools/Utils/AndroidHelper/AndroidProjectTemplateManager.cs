@@ -4,8 +4,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Reflection;
 using System.Threading.Tasks;
-using Xamaridea.Core.Extensions;
-
 
 namespace DCReleaseTools.Utils
 {
