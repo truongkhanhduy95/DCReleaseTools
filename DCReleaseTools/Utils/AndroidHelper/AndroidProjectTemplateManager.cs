@@ -9,9 +9,9 @@ namespace DCReleaseTools.Utils
 {
     public class AndroidProjectTemplateManager
     {
-        public const string AndroidTemplateProjectResourceName = "Xamaridea.Core.AndroidProjectTemplate.zip";
+        public const string AndroidTemplateProjectResourceName = "DCReleaseTools.AndroidProjectTemplate.zip";
 
-        public const string AppDataFolderName = "Xamaridea";
+        public const string AppDataFolderName = "DCReleaseTools";
 
         public const string TemplateFolderName = "Template_v.0.8";//TODO: use template zip md5 to compare versions instead ?
         public const string TemplateCustomFolderName = "Template_Custom";

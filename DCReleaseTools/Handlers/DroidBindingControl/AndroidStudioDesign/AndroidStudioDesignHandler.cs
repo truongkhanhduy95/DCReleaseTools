@@ -15,15 +15,14 @@ namespace DCReleaseTools.Handlers
             //All .axml file will be changed to .xml file to be read in Android Studio
             //Consider to reset files to .xml extension
 
-            var path = IdeApp.ProjectOperations.CurrentSelectedProject.ItemDirectory;
-
+            var path = IdeApp.ProjectOperations.CurrentSelectedProject.FileName;
             var idePath = AndroidIDEDetector.TryFindIdePath();
 
             var arg = new ApplicationArguments();
             arg.AndroidSDKPath = string.Empty;
             arg.AndroidStudioPath = idePath;
-            arg.CustomTemplatePath = string.Empty; //TODO:Implement custom template
-            arg.XamarinProjectPath = "/Users/duytruong/Desktop/Project/ScanTrade/Scantrade/ScanTrade.Droid/ScanTrade.Droid.csproj";
+            arg.CustomTemplatePath = "/Users/bja/Workspaces/Xamarin/Xamaridea/CustomTemplate"; //TODO:Implement custom template
+            arg.XamarinProjectPath = path;
 
             RunAsync(arg);
         }
