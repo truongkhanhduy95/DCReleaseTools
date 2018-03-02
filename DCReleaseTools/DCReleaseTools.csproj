@@ -39,6 +39,7 @@
     <Reference Include="Mono.Cairo" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.IO.Compression.FileSystem" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\AndroidStudioDesignHandler.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\AndroidHelper\AndroidIDEDetector.cs" />
+    <Compile Include="Utils\AndroidHelper\AndroidProjectTemplateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

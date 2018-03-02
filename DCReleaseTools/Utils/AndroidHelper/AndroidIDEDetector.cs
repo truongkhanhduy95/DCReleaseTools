@@ -15,7 +15,7 @@ namespace DCReleaseTools.Utils
             {
                 Process proc = new System.Diagnostics.Process();
                 proc.StartInfo.FileName = "/bin/bash";
-                proc.StartInfo.Arguments = "-c '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump | grep -i \\'" + ideName + "\\''";
+                proc.StartInfo.Arguments = "-c '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump | grep -i \\'" + IDE_NAME + "\\''";
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.RedirectStandardError = true;
