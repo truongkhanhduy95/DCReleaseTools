@@ -24,26 +24,21 @@ namespace DCReleaseTools.Handlers
             arg.CustomTemplatePath = "/Users/bja/Workspaces/Xamarin/Xamaridea/CustomTemplate"; //TODO:Implement custom template
             arg.XamarinProjectPath = path;
 
-            RunAsync(arg);
+            var projectsSynchronizer = new ProjectSynchronizer(arg);
+            projectsSynchronizer.MakeResourcesSubdirectoriesAndFilesLowercase(async () =>
+            {
+                System.Console.WriteLine("Permissions to change original project has been requested and granted.");
+                return true;
+            });
+
+
+            var hanlder = new Action(delegate
+            {
+                projectsSynchronizer.Sync();
+            });
+            hanlder.Invoke();
         }
 
-        public async Task RunAsync(ApplicationArguments args)
-        {
-            try
-            {
-                var projectsSynchronizer = new ProjectSynchronizer(args);
-                await projectsSynchronizer.MakeResourcesSubdirectoriesAndFilesLowercase(async () => 
-                {
-                    System.Console.WriteLine("Permissions to change original project has been requested and granted.");
-                    return true;
-                });
-                projectsSynchronizer.Sync();
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-            }
-        }
 
         protected override void Update(CommandInfo info)
         {

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DCReleaseTools.Utils;
+using MonoDevelop.Core;
+using MonoDevelop.Ide;
+using MonoDevelop.Ide.Gui;
 
 namespace DCReleaseTools.Handlers
 {
@@ -13,6 +16,7 @@ namespace DCReleaseTools.Handlers
         public const string ResFolderName = "Resources";
 
         private ApplicationArguments args;
+        private ProgressMonitor _monitor;
 
         private readonly AndroidProjectTemplateManager _androidProjectTemplateManager = new AndroidProjectTemplateManager();
 
@@ -20,7 +24,6 @@ namespace DCReleaseTools.Handlers
         private readonly string _projectName;
 
         private bool _grantedPermissionsToChangeMainProject = false;
-
 
         public ProjectSynchronizer(string xamarinProjectPath, string anideExePath, string androidSDKPath = null)
             : this(new ApplicationArguments()
@@ -49,14 +52,15 @@ namespace DCReleaseTools.Handlers
                 templatePath: args.CustomTemplatePath
             );
 
-            AppendLog("created project dir : {0}", ideaProjectDir);
+            AppendLog("Created project dir : {0}", ideaProjectDir);
 
             //if (!string.IsNullOrEmpty(selectedFile))
             //{
             //    arguments += string.Format(" --line 1 \"{0}\"", selectedFile);
             //}
 
-            AppendLog("Opening Android Studio");
+            AppendLog("Opening Android Studio...");
+            _monitor = IdeApp.Workbench.ProgressMonitors.GetStatusProgressMonitor("Opening Android Studio...", Stock.StatusSolutionOperation, false, true, false);
             Process p;
 
             var path = string.Format("{0}{1}", args.AndroidStudioPath, "/Contents/MacOS/studio");
@@ -73,10 +77,12 @@ namespace DCReleaseTools.Handlers
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
             });
+            ShowSucess("Android Studio opened.");
 
-            p?.WaitForExit();
-            AppendLog("closed Android Studio, deleting temp project");
-            DeleteProject(ideaProjectDir);
+            //TODO: Clear project after exit android studio
+            //p?.WaitForExit();
+            //AppendLog("Closed Android Studio, deleting temp project");
+            //DeleteProject(ideaProjectDir);
         }
 
         void DeleteProject(string ideaProjectDir)
@@ -177,9 +183,16 @@ namespace DCReleaseTools.Handlers
             return changed;
         }
 
-        private void AppendLog(string format, params object[] args)
+        protected void AppendLog(string format, params object[] args)
         {
-            Console.WriteLine(" > " + format, args);
+            var log = string.Format(" > " + format, args);
+            Console.WriteLine(log);
+
+        }
+
+        protected void ShowSucess(string log)
+        {
+            _monitor.ReportSuccess(log);
         }
     }
 }
