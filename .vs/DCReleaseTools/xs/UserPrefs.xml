@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{77A2BB13-B7F0-4C88-B28A-EC50B8A4C957}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DCReleaseTools/Properties/Manifest.addin.xml">
+    <Files>
+      <File FileName="DCReleaseTools/Properties/AddinInfo.cs" Line="31" Column="22" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/AndroidStudioDesign/ProjectSynchronizer.cs" Line="83" Column="32" />
+      <File FileName="DCReleaseTools/Properties/Manifest.addin.xml" Line="24" Column="37" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DCReleaseTools PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

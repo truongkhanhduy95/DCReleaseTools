@@ -51,14 +51,14 @@
     </Extension>
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
         <Condition id="ItemType" value="ProjectFile">
-            <CommandItem id="DCReleaseTools.Commands.BindingCommands.OpenAndroidStudioDesign"
+            <ItemSet
+                id="AndroidDesigner"
+                _label="Android layout designer"
                 insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
-                insertbefore="ToolsSectionEnd"/>
-        </Condition>
-        <Condition id="ItemType" value="ProjectFile">
-            <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"
-                insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
-                insertbefore="ToolsSectionEnd"/>
+                insertbefore="ToolsSectionEnd">
+                <CommandItem id="DCReleaseTools.Commands.BindingCommands.OpenAndroidStudioDesign"/>
+                <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"/>     
+            </ItemSet>
         </Condition>
         <SeparatorItem
                 insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
