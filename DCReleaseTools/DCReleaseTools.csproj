@@ -70,6 +70,7 @@
     <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\ApplicationArguments.cs" />
     <Compile Include="Exception\CsprojEditFailedException.cs" />
     <Compile Include="Exception\FileRenameToLowercaseException.cs" />
+    <Compile Include="Handlers\DroidBindingControl\AndroidStudioDesign\RestoreLayoutHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

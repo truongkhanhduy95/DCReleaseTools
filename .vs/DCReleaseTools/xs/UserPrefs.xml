@@ -1,9 +1,17 @@
-﻿<Properties StartupConfiguration="{77A2BB13-B7F0-4C88-B28A-EC50B8A4C957}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="DCReleaseTools/Properties/Manifest.addin.xml">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="DCReleaseTools/Handlers/DroidBindingControl/GenerateControlWrapper/GenerateControlHandler.cs">
     <Files>
       <File FileName="DCReleaseTools/Properties/AddinInfo.cs" Line="31" Column="22" />
-      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/AndroidStudioDesign/ProjectSynchronizer.cs" Line="83" Column="32" />
-      <File FileName="DCReleaseTools/Properties/Manifest.addin.xml" Line="24" Column="37" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/AndroidStudioDesign/ProjectSynchronizer.cs" Line="41" Column="56" />
+      <File FileName="DCReleaseTools/Properties/Manifest.addin.xml" Line="61" Column="77" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/AndroidStudioDesign/AndroidStudioDesignHandler.cs" Line="18" Column="81" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/BindingCommands.cs" Line="8" Column="26" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/AndroidStudioDesign/RestoreLayoutHandler.cs" Line="18" Column="28" />
+      <File FileName="DCReleaseTools/Utils/FileHelper.cs" Line="99" Column="13" />
+      <File FileName="DCReleaseTools/Utils/ProjectHelper.cs" Line="1" Column="1" />
+      <File FileName="DCReleaseTools/Utils/ManualCodeChanger.cs" Line="24" Column="13" />
+      <File FileName="DCReleaseTools/Utils/AndroidHelper/AndroidProjectTemplateManager.cs" Line="29" Column="13" />
+      <File FileName="DCReleaseTools/Handlers/DroidBindingControl/GenerateControlWrapper/GenerateControlHandler.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

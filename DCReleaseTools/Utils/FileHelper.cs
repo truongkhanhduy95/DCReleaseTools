@@ -13,6 +13,12 @@ namespace DCReleaseTools.Utils
             return isLayoutFile;
         }
 
+        public static bool IsXMLFile(ProjectFile selectedFile)
+        {
+            var isXMLFile = selectedFile.Name.EndsWith(".xml", StringComparison.Ordinal);
+            return isXMLFile;
+        }
+
         public static bool IsCSharpFile(ProjectFile selectedFile)
         {
             var isLayoutFile = selectedFile.Name.EndsWith(".cs", StringComparison.Ordinal);

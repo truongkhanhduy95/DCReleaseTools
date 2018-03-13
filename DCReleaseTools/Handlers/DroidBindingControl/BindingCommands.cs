@@ -4,6 +4,7 @@ namespace DCReleaseTools.Commands
     public enum BindingCommands
     {
         GenarateControl,
-        OpenAndroidStudioDesign
+        OpenAndroidStudioDesign,
+        RestoreLayoutAXML
     }
 }

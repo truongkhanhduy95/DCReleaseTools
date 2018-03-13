@@ -48,6 +48,10 @@
                 _label="Open layout in Android Studio" 
                 _description="" 
                 defaultHandler="DCReleaseTools.Handlers.AndroidStudioDesignHandler" />
+        <Command id="DCReleaseTools.Commands.BindingCommands.RestoreLayoutAXML" 
+                _label="Restore layout AXML" 
+                _description="" 
+                defaultHandler="DCReleaseTools.Handlers.RestoreLayoutHandler" />
     </Extension>
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
         <Condition id="ItemType" value="ProjectFile">
@@ -57,6 +61,8 @@
                 insertafter="MonoDevelop.Ide.Commands.FileCommands.OpenContainingFolder"
                 insertbefore="ToolsSectionEnd">
                 <CommandItem id="DCReleaseTools.Commands.BindingCommands.OpenAndroidStudioDesign"/>
+                <CommandItem id="DCReleaseTools.Commands.BindingCommands.RestoreLayoutAXML"/>
+                <SeparatorItem/>
                 <CommandItem id="DCReleaseTools.Commands.BindingCommands.GenarateControl"/>     
             </ItemSet>
         </Condition>
