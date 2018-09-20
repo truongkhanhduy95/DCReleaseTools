@@ -8,4 +8,4 @@ Visual Studio for Mac extension
 
 <img src="https://media.giphy.com/media/9uIvL2yFxYSGAQGXQr/giphy.gif"/>
 
-File nesting inspired by [MrWard](https://github.com/mrward/FileNesting) 
+<b>File Nesting</b>inspired by [MrWard](https://github.com/mrward/FileNesting) 
